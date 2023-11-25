@@ -1,0 +1,4 @@
+rootProject.name = 'consumer-first-api-example'
+include 'client'
+include 'service'
+

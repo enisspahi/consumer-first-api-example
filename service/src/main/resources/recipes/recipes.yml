@@ -1,0 +1,151 @@
+recipes:
+  - title: Baked Salmon
+    ingredients:
+      - name: Salmon fillets
+        quantity: 4
+        unit: pieces
+      - name: Lemon juice
+        quantity: 30
+        unit: ml
+      - name: Olive oil
+        quantity: 15
+        unit: ml
+      - name: Garlic cloves
+        quantity: 2
+        unit: cloves
+      - name: Fresh dill
+        quantity: 10
+        unit: grams
+      - name: Salt
+        quantity: 0.5
+        unit: tablespoon
+    preparationTime: 10
+    cookingTime: 20
+    servings: 4
+    instructions:
+      - "Preheat oven to 220°C."
+      - "Place salmon on a baking sheet, drizzle with lemon juice and olive oil."
+      - "Top with minced garlic, dill, and sprinkle with salt."
+      - "Bake for 20 minutes or until salmon flakes easily with a fork."
+    nutritionFacts:
+      - HIGH_PROTEIN
+      - LOW_CALORIE
+
+  - title: Pumpkin Soup
+    ingredients:
+      - name: Pumpkin
+        quantity: 1000
+        unit: grams
+      - name: Onion
+        quantity: 1
+        unit: unit
+      - name: Vegetable broth
+        quantity: 750
+        unit: ml
+      - name: Cream
+        quantity: 100
+        unit: ml
+      - name: Nutmeg
+        quantity: 1
+        unit: gram
+      - name: Salt
+        quantity: 1
+        unit: tablespoon
+    preparationTime: 15
+    cookingTime: 30
+    servings: 4
+    instructions:
+      - "Sauté onion until translucent."
+      - "Add pumpkin cubes, vegetable broth, and salt, bring to a boil."
+      - "Simmer until pumpkin is tender."
+      - "Blend until smooth, stir in cream and nutmeg."
+      - "Heat through and serve."
+    nutritionFacts:
+      - LOW_CALORIE
+      - CARBS
+
+  - title: Tuna Salad
+    ingredients:
+      - name: Canned tuna
+        quantity: 200
+        unit: grams
+      - name: Mixed salad greens
+        quantity: 150
+        unit: grams
+      - name: Cherry tomatoes
+        quantity: 100
+        unit: grams
+      - name: Red onion
+        quantity: 1
+        unit: unit
+      - name: Olive oil
+        quantity: 30
+        unit: ml
+      - name: Lemon juice
+        quantity: 15
+        unit: ml
+      - name: Salt
+        quantity: 0.5
+        unit: tablespoon
+    preparationTime: 10
+    cookingTime: 0
+    servings: 2
+    instructions:
+      - "Mix tuna with salad greens, cherry tomatoes, and sliced onion."
+      - "Drizzle with olive oil and lemon juice."
+      - "Toss gently and serve."
+    nutritionFacts:
+      - HIGH_PROTEIN
+      - LOW_CALORIE
+
+  - title: Rice with Vegetables
+    ingredients:
+      - name: Rice
+        quantity: 200
+        unit: grams
+      - name: Mixed vegetables
+        quantity: 300
+        unit: grams
+      - name: Olive oil
+        quantity: 15
+        unit: ml
+      - name: Salt
+        quantity: 1
+        unit: tablespoon
+    preparationTime: 5
+    cookingTime: 20
+    servings: 4
+    instructions:
+      - "Cook rice according to package instructions."
+      - "Sauté mixed vegetables in olive oil."
+      - "Combine cooked rice and vegetables, season with salt."
+      - "Serve hot."
+    nutritionFacts:
+      - LOW_CALORIE
+      - CARBS
+
+  - title: Steak
+    ingredients:
+      - name: Beef steak
+        quantity: 500
+        unit: grams
+      - name: Salt
+        quantity: 1
+        unit: tablespoon
+      - name: Black pepper
+        quantity: 2
+        unit: grams
+      - name: Olive oil
+        quantity: 15
+        unit: ml
+    preparationTime: 5
+    cookingTime: 10
+    servings: 2
+    instructions:
+      - "Season steak with salt and pepper."
+      - "Heat olive oil in a pan over high heat."
+      - "Cook steak to desired doneness, 3-5 minutes per side for medium-rare."
+      - "Let rest for a few minutes, then serve."
+    nutritionFacts:
+      - HIGH_CALORIE
+      - HIGH_PROTEIN
