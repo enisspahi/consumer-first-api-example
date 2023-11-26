@@ -38,7 +38,7 @@ Provider implementation done. Therefore we can deploy
 ./gradlew :service:pactVerify -Dpact.verifier.publishResults=true
 ````
 
-### 6. Client performs `Can I deploy?` check to proceed
+### 6. Consumer performs `Can I deploy?` check
 
 At this point provider has fulfilled the Pact and deployed the API. Therefore, the consumer is good-to-go with client deployment 
 ````
