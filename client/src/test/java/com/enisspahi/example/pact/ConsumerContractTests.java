@@ -41,12 +41,12 @@ public class ConsumerContractTests {
     public RequestResponsePact getRecipesByTitlePact(PactDslWithProvider builder) {
         return builder
                 .uponReceiving("GET pumpkin recipes")
-                .path("/recipes")
-                .query("title=Pumpkin")
-                .method("GET")
+                    .path("/recipes")
+                    .query("title=Pumpkin")
+                    .method("GET")
                 .willRespondWith()
-                .status(200)
-                .body(recipesResponseStructure(Optional.of("Pumpkin"), Optional.empty()))
+                    .status(200)
+                    .body(recipesResponseStructure(Optional.of("Pumpkin"), Optional.empty()))
                 .toPact();
     }
 
@@ -54,12 +54,12 @@ public class ConsumerContractTests {
     public RequestResponsePact getRecipesByNutritionPact(PactDslWithProvider builder) {
         return builder
                 .uponReceiving("GET LOW_CALORIE and HIGH_PROTEIN recipes")
-                .path("/recipes")
-                .query("nutritionFacts=LOW_CALORIE&nutritionFacts=HIGH_PROTEIN")
-                .method("GET")
+                    .path("/recipes")
+                    .query("nutritionFacts=LOW_CALORIE&nutritionFacts=HIGH_PROTEIN")
+                    .method("GET")
                 .willRespondWith()
-                .status(200)
-                .body(recipesResponseStructure(Optional.empty(), Optional.of(Set.of("LOW_CALORIE", "HIGH_PROTEIN"))))
+                    .status(200)
+                    .body(recipesResponseStructure(Optional.empty(), Optional.of(Set.of("LOW_CALORIE", "HIGH_PROTEIN"))))
                 .toPact();
     }
 
