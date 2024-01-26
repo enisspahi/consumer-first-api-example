@@ -13,7 +13,8 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'au.com.dius.pact.consumer:junit5:4.6.3'
+    testImplementation 'au.com.dius.pact.consumer:junit5:4.6.5'
+    testImplementation 'org.hamcrest:hamcrest-core:2.2'
 }
 
 test {
