@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 final class YamlSourceReader {
 
     static List<Recipe> readFromYaml() {
-        var yaml = new Yaml(new Constructor(RecipesDTOWrapper.class));
+        var yaml = new Yaml();
         InputStream inputStream = RecipeYmlRepository.class.getResourceAsStream("/recipes/recipes.yml");
-        RecipesDTOWrapper recipesDTOList = yaml.load(inputStream);
+        RecipesDTOWrapper recipesDTOList = yaml.loadAs(inputStream, RecipesDTOWrapper.class);
         return recipesDTOList.recipes.stream()
                 .map(YamlSourceReader::toAPIModel)
                 .collect(Collectors.toList());

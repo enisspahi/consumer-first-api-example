@@ -28,7 +28,7 @@ public class RecipeController {
     public List<Recipe> findRecipes(@RequestParam Optional<String> title,
                                     @RequestParam Optional<List<String>> ingredients,
                                     @RequestParam Optional<List<Recipe.NutritionFact>> nutritionFacts) {
-        return recipeService.search(title, ingredients.orElse(Collections.EMPTY_LIST), nutritionFacts.orElse(Collections.EMPTY_LIST));
+        return recipeService.search(title, ingredients.orElse(Collections.emptyList()), nutritionFacts.orElse(Collections.emptyList()));
     }
 
 }
