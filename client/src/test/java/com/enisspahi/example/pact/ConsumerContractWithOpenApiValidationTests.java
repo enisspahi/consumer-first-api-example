@@ -83,40 +83,6 @@ public class ConsumerContractWithOpenApiValidationTests {
         return pact;
     }
 
-    @Test
-    @PactTestFor(pactMethod = "getAllRecipesPact")
-    void getsAllRecipes(MockServer mockServer) {
-        var controller = new ClientController(new RecipesApi(mockServer.getUrl()));
-        controller.handleSearch(Optional.empty(), Optional.empty(), Optional.empty(), model);
-
-        var searchResult = model.getAttribute("recipes").toString();
-        assertTrue(searchResult.contains("title=Chilli sin Carne"));
-    }
-
-    @Test
-    @PactTestFor(pactMethod = "getRecipesByTitlePact")
-    void getsRecipesByTitle(MockServer mockServer) {
-        var controller = new ClientController(new RecipesApi(mockServer.getUrl()));
-        controller.handleSearch(Optional.of("Pumpkin"), Optional.empty(), Optional.empty(), model);
-
-        var searchResult = model.getAttribute("recipes").toString();
-        assertTrue(searchResult.contains("title=Pumpkin"));
-        assertFalse(searchResult.contains("title=Chilli sin Carne"));
-    }
-
-    @Test
-    @PactTestFor(pactMethod = "getRecipesByNutritionPact")
-    void getsRecipesByNutrition(MockServer mockServer) {
-        var controller = new ClientController(new RecipesApi(mockServer.getUrl()));
-        controller.handleSearch(Optional.empty(), Optional.empty(), Optional.of(List.of("LOW_CALORIE", "HIGH_PROTEIN")), model);
-
-        var searchResult = model.getAttribute("recipes").toString();
-        assertTrue(searchResult.contains("LOW_CALORIE"));
-        assertTrue(searchResult.contains("HIGH_PROTEIN"));
-        assertFalse(searchResult.contains("HIGH_CALORIE"));
-        assertFalse(searchResult.contains("CARBS"));
-    }
-
     public DslPart recipesResponseStructure(Optional<String> expectedTitle, Optional<Set<String>> expectedNutritionValues) {
         return newJsonArrayMinLike(1, array -> {
             array.object(recipe -> {
@@ -156,4 +122,39 @@ public class ConsumerContractWithOpenApiValidationTests {
             }
         });
     }
+
+    @Test
+    @PactTestFor(pactMethod = "getAllRecipesPact")
+    void getsAllRecipes(MockServer mockServer) {
+        var controller = new ClientController(new RecipesApi(mockServer.getUrl()));
+        controller.handleSearch(Optional.empty(), Optional.empty(), Optional.empty(), model);
+
+        var searchResult = model.getAttribute("recipes").toString();
+        assertTrue(searchResult.contains("title=Chilli sin Carne"));
+    }
+
+    @Test
+    @PactTestFor(pactMethod = "getRecipesByTitlePact")
+    void getsRecipesByTitle(MockServer mockServer) {
+        var controller = new ClientController(new RecipesApi(mockServer.getUrl()));
+        controller.handleSearch(Optional.of("Pumpkin"), Optional.empty(), Optional.empty(), model);
+
+        var searchResult = model.getAttribute("recipes").toString();
+        assertTrue(searchResult.contains("title=Pumpkin"));
+        assertFalse(searchResult.contains("title=Chilli sin Carne"));
+    }
+
+    @Test
+    @PactTestFor(pactMethod = "getRecipesByNutritionPact")
+    void getsRecipesByNutrition(MockServer mockServer) {
+        var controller = new ClientController(new RecipesApi(mockServer.getUrl()));
+        controller.handleSearch(Optional.empty(), Optional.empty(), Optional.of(List.of("LOW_CALORIE", "HIGH_PROTEIN")), model);
+
+        var searchResult = model.getAttribute("recipes").toString();
+        assertTrue(searchResult.contains("LOW_CALORIE"));
+        assertTrue(searchResult.contains("HIGH_PROTEIN"));
+        assertFalse(searchResult.contains("HIGH_CALORIE"));
+        assertFalse(searchResult.contains("CARBS"));
+    }
+
 }

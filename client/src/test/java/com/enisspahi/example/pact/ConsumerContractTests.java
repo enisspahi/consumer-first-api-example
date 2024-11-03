@@ -68,6 +68,36 @@ public class ConsumerContractTests {
                 .toPact();
     }
 
+    public DslPart recipesResponseStructure(Optional<String> expectedTitle, Optional<Set<String>> expectedNutritionValues) {
+        return newJsonArrayMinLike(1, array -> {
+            array.object(recipe -> {
+                expectedTitle.ifPresentOrElse(
+                        expectedValue -> recipe.stringMatcher("title", expectedValue + ".*"),
+                        () -> recipe.stringType("title", "Chilli sin Carne")
+                );
+                recipe.array("ingredients", ingredientsArray -> {
+                    ingredientsArray.object(ingredient -> {
+                        ingredient.stringType("name", "Kidney beans");
+                        ingredient.numberType("quantity", 250);
+                        ingredient.stringType("unit", "grams");
+                    });
+                });
+                recipe.numberType("preparationTime", 30);
+                recipe.numberType("cookingTime", 15);
+                recipe.numberType("servings", 4);
+                recipe.array("instructions", instructions -> instructions.stringType("string"));
+
+                recipe.arrayContaining("nutritionFacts", nutritionFacts -> {
+                    expectedNutritionValues.ifPresentOrElse(
+                            expectedValues -> expectedValues.forEach(expectedValue -> nutritionFacts.stringMatcher(expectedValue, expectedValue)),
+                            () -> nutritionFacts.stringType("LOW_CALORIE")
+                    );
+
+                });
+
+            });
+        }).build();
+    }
 
     @Test
     @PactTestFor(pactMethod = "getAllRecipesPact")
@@ -104,35 +134,5 @@ public class ConsumerContractTests {
 
     }
 
-    public DslPart recipesResponseStructure(Optional<String> expectedTitle, Optional<Set<String>> expectedNutritionValues) {
-        return newJsonArrayMinLike(1, array -> {
-            array.object(recipe -> {
-                expectedTitle.ifPresentOrElse(
-                        expectedValue -> recipe.stringMatcher("title", expectedValue + ".*"),
-                        () -> recipe.stringType("title", "Chilli sin Carne")
-                );
-                recipe.array("ingredients", ingredientsArray -> {
-                    ingredientsArray.object(ingredient -> {
-                        ingredient.stringType("name", "Kidney beans");
-                        ingredient.numberType("quantity", 250);
-                        ingredient.stringType("unit", "grams");
-                    });
-                });
-                recipe.numberType("preparationTime", 30);
-                recipe.numberType("cookingTime", 15);
-                recipe.numberType("servings", 4);
-                recipe.array("instructions", instructions -> instructions.stringType("string"));
-
-                recipe.arrayContaining("nutritionFacts", nutritionFacts -> {
-                    expectedNutritionValues.ifPresentOrElse(
-                            expectedValues -> expectedValues.forEach(expectedValue -> nutritionFacts.stringMatcher(expectedValue, expectedValue)),
-                            () -> nutritionFacts.stringType("LOW_CALORIE")
-                    );
-
-                });
-
-            });
-        }).build();
-    }
 
 }
