@@ -8,6 +8,10 @@ import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.PactSpecVersion;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
+import com.atlassian.oai.validator.OpenApiInteractionValidator;
+import com.atlassian.oai.validator.pact.PactRequest;
+import com.atlassian.oai.validator.pact.PactResponse;
+import com.atlassian.oai.validator.pact.ValidatedPactProviderRule;
 import com.enisspahi.example.ClientController;
 import com.enisspahi.example.RecipesApi;
 import org.junit.jupiter.api.Test;
@@ -20,19 +24,24 @@ import java.util.Set;
 
 import static au.com.dius.pact.consumer.dsl.LambdaDsl.newJsonArrayMinLike;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @PactConsumerTest
-@PactTestFor(providerName = ConsumerContractTests.RECIPES_PROVIDER, pactVersion = PactSpecVersion.V3)
-public class ConsumerContractTests {
+@PactTestFor(providerName = ConsumerContractWithOpenApiValidationTests.RECIPES_PROVIDER, pactVersion = PactSpecVersion.V3)
+public class ConsumerContractWithOpenApiValidationTests {
 
     static final String RECIPES_PROVIDER = "RecipesAPI";
     static final String RECIPES_CONSUMER = "RecipesClient";
 
-    private final Model model = new RedirectAttributesModelMap();
+    private final OpenApiInteractionValidator openApiInteractionValidator = OpenApiInteractionValidator
+            .createForSpecificationUrl("https://raw.githubusercontent.com/enisspahi/contract-first-api-example/main/api/src/main/resources/recipes-api.yaml")
+            .build();
+
+    private Model model = new RedirectAttributesModelMap();
 
     @Pact(provider = RECIPES_PROVIDER, consumer = RECIPES_CONSUMER)
     public RequestResponsePact getAllRecipesPact(PactDslWithProvider builder) {
-        return builder
+        var pact = builder
                 .uponReceiving("GET all recipes")
                     .path("/recipes")
                     .method("GET")
@@ -40,34 +49,39 @@ public class ConsumerContractTests {
                     .status(200)
                     .body(recipesResponseStructure(Optional.empty(), Optional.empty()))
                 .toPact();
+        validate(pact);
+        return pact;
     }
 
     @Pact(provider = RECIPES_PROVIDER, consumer = RECIPES_CONSUMER)
     public RequestResponsePact getRecipesByTitlePact(PactDslWithProvider builder) {
-        return builder
+        var pact = builder
                 .uponReceiving("GET pumpkin recipes")
-                    .path("/recipes")
-                    .query("title=Pumpkin")
-                    .method("GET")
+                .path("/recipes")
+                .query("title=Pumpkin")
+                .method("GET")
                 .willRespondWith()
-                    .status(200)
-                    .body(recipesResponseStructure(Optional.of("Pumpkin"), Optional.empty()))
+                .status(200)
+                .body(recipesResponseStructure(Optional.of("Pumpkin"), Optional.empty()))
                 .toPact();
+        validate(pact);
+        return pact;
     }
 
     @Pact(provider = RECIPES_PROVIDER, consumer = RECIPES_CONSUMER)
     public RequestResponsePact getRecipesByNutritionPact(PactDslWithProvider builder) {
-        return builder
+        var pact = builder
                 .uponReceiving("GET LOW_CALORIE and HIGH_PROTEIN recipes")
-                    .path("/recipes")
-                    .query("nutritionFacts=LOW_CALORIE&nutritionFacts=HIGH_PROTEIN")
-                    .method("GET")
+                .path("/recipes")
+                .query("nutritionFacts=LOW_CALORIE&nutritionFacts=HIGH_PROTEIN")
+                .method("GET")
                 .willRespondWith()
-                    .status(200)
-                    .body(recipesResponseStructure(Optional.empty(), Optional.of(Set.of("LOW_CALORIE", "HIGH_PROTEIN"))))
+                .status(200)
+                .body(recipesResponseStructure(Optional.empty(), Optional.of(Set.of("LOW_CALORIE", "HIGH_PROTEIN"))))
                 .toPact();
+        validate(pact);
+        return pact;
     }
-
 
     @Test
     @PactTestFor(pactMethod = "getAllRecipesPact")
@@ -101,7 +115,6 @@ public class ConsumerContractTests {
         assertTrue(searchResult.contains("HIGH_PROTEIN"));
         assertFalse(searchResult.contains("HIGH_CALORIE"));
         assertFalse(searchResult.contains("CARBS"));
-
     }
 
     public DslPart recipesResponseStructure(Optional<String> expectedTitle, Optional<Set<String>> expectedNutritionValues) {
@@ -135,4 +148,12 @@ public class ConsumerContractTests {
         }).build();
     }
 
+    private void validate(RequestResponsePact pact) {
+        pact.getInteractions().forEach(interaction -> {
+            var result = openApiInteractionValidator.validate(PactRequest.of(interaction.asSynchronousRequestResponse().getRequest()), PactResponse.of(interaction.asSynchronousRequestResponse().getResponse()));
+            if (result.hasErrors()) {
+                throw new ValidatedPactProviderRule.PactValidationError(result);
+            }
+        });
+    }
 }

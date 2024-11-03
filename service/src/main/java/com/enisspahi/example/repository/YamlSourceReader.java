@@ -3,7 +3,6 @@ package com.enisspahi.example.repository;
 import com.enisspahi.example.model.Recipe;
 import lombok.Data;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.InputStream;
 import java.util.List;
@@ -13,7 +12,7 @@ final class YamlSourceReader {
 
     static List<Recipe> readFromYaml() {
         var yaml = new Yaml();
-        InputStream inputStream = RecipeYmlRepository.class.getResourceAsStream("/recipes/recipes.yml");
+        InputStream inputStream = RecipesYmlRepository.class.getResourceAsStream("/recipes/recipes.yml");
         RecipesDTOWrapper recipesDTOList = yaml.loadAs(inputStream, RecipesDTOWrapper.class);
         return recipesDTOList.recipes.stream()
                 .map(YamlSourceReader::toAPIModel)

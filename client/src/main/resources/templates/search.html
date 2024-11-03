@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipe Form</title>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        function addIngredient() {
+            var ingredientsList = document.getElementById("ingredients");
+
+            var ingredientDiv = document.createElement("div");
+            ingredientDiv.className = 'form-group';
+
+            var newIngredient = document.createElement("input");
+            newIngredient.setAttribute("type", "text");
+            newIngredient.setAttribute("name", "ingredients");
+            ingredientDiv.appendChild(newIngredient);
+
+            var removeButton = document.createElement("button");
+            removeButton.innerHTML = '-';
+            removeButton.type = 'button';
+            removeButton.onclick = function() {
+                ingredientsList.removeChild(ingredientDiv);
+            };
+            ingredientDiv.appendChild(removeButton);
+
+            ingredientsList.appendChild(ingredientDiv);
+        }
+    </script>
+</head>
+<body>
+<h1>What should I cook?</h1>
+<div class="container">
+    <form action="/searchRecipe" method="post">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" />
+        </div>
+        <div class="form-group">
+            <label>Ingredients:</label>
+            <button type="button" onclick="addIngredient()">Add Ingredient</button>
+        </div>
+        <div id="ingredients"></div>
+        <div class="form-group">
+            <label for="nutritionFacts">Nutrition Facts:</label>
+            <select id="nutritionFacts" name="nutritionFacts" multiple>
+                <option value="HIGH_PROTEIN">High Protein</option>
+                <option value="LOW_CALORIE">Low Calorie</option>
+                <option value="CARBS">Carbs</option>
+                <option value="HIGH_CALORIE">High Calorie</option>
+            </select>
+        </div>
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>

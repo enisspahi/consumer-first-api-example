@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recipes Result</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container results-container">
+    <button onclick="window.location.href='/'" class="go-home-btn">New search</button>
+    <h2>Recipes</h2>
+    <div th:each="recipe, stat : ${recipes}" class="recipe">
+        <h3 th:text="${stat.count + '. ' + recipe.title}">Recipe Title</h3>
+        <div class="recipe-details">
+            <h4>Ingredients</h4>
+            <ul>
+                <li th:each="ingredient : ${recipe.ingredients}"
+                    th:text="${ingredient.name + ' - ' + ingredient.quantity + ' ' + ingredient.unit}">
+                    Ingredient
+                </li>
+            </ul>
+
+            <h4>Preparation Time</h4>
+            <p th:text="${recipe.preparationTime} + ' minutes'">Preparation Time</p>
+
+            <h4>Cooking Time</h4>
+            <p th:text="${recipe.cookingTime} + ' minutes'">Cooking Time</p>
+
+            <h4>Servings</h4>
+            <p th:text="${recipe.servings}">Servings</p>
+
+            <h4>Instructions</h4>
+            <ol>
+                <li th:each="instruction : ${recipe.instructions}" th:text="${instruction}">
+                    Instruction
+                </li>
+            </ol>
+
+            <h4>Nutrition Facts</h4>
+            <ul>
+                <li th:each="fact : ${recipe.nutritionFacts}" class="nutrition-fact" th:text="${fact}">
+                    Fact
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,4 +1,46 @@
 recipes:
+
+  - title: Chili sin Carne
+    ingredients:
+      - name: Kidney beans
+        quantity: 400
+        unit: grams
+      - name: Chickpeas
+        quantity: 200
+        unit: grams
+      - name: Canned tomatoes
+        quantity: 400
+        unit: grams
+      - name: Bell peppers
+        quantity: 150
+        unit: grams
+      - name: Onion
+        quantity: 1
+        unit: unit
+      - name: Garlic
+        quantity: 3
+        unit: cloves
+      - name: Chili powder
+        quantity: 10
+        unit: grams
+      - name: Cumin
+        quantity: 5
+        unit: grams
+      - name: Vegetable broth
+        quantity: 500
+        unit: ml
+    preparationTime: 10
+    cookingTime: 25
+    servings: 4
+    instructions:
+      - "Sauté onion and garlic in a pot."
+      - "Add chili powder and cumin, stir."
+      - "Mix in kidney beans, chickpeas, canned tomatoes, and vegetable broth."
+      - "Simmer for 25 minutes, then serve with rice or cornbread."
+    nutritionFacts:
+      - HIGH_PROTEIN
+      - CARBS
+
   - title: Baked Salmon
     ingredients:
       - name: Salmon fillets
@@ -29,7 +71,6 @@ recipes:
       - "Bake for 20 minutes or until salmon flakes easily with a fork."
     nutritionFacts:
       - HIGH_PROTEIN
-      - LOW_CALORIE
 
   - title: Pumpkin Soup
     ingredients:
@@ -121,7 +162,6 @@ recipes:
       - "Combine cooked rice and vegetables, season with salt."
       - "Serve hot."
     nutritionFacts:
-      - LOW_CALORIE
       - CARBS
 
   - title: Steak
@@ -149,3 +189,182 @@ recipes:
     nutritionFacts:
       - HIGH_CALORIE
       - HIGH_PROTEIN
+
+  - title: Chicken Tacos
+    ingredients:
+      - name: Chicken breast
+        quantity: 400
+        unit: grams
+      - name: Taco seasoning
+        quantity: 15
+        unit: grams
+      - name: Corn tortillas
+        quantity: 8
+        unit: pieces
+      - name: Lettuce
+        quantity: 100
+        unit: grams
+      - name: Salsa
+        quantity: 100
+        unit: grams
+      - name: Sour cream
+        quantity: 50
+        unit: grams
+      - name: Cheese
+        quantity: 50
+        unit: grams
+      - name: Lime
+        quantity: 1
+        unit: unit
+    preparationTime: 15
+    cookingTime: 10
+    servings: 4
+    instructions:
+      - "Season and cook the chicken until golden."
+      - "Warm tortillas in a pan."
+      - "Assemble tacos with lettuce, salsa, chicken, sour cream, and cheese."
+      - "Squeeze lime over the tacos and serve."
+    nutritionFacts:
+      - HIGH_PROTEIN
+
+  - title: Bolognese Linguine
+    ingredients:
+      - name: Ground beef
+        quantity: 500
+        unit: grams
+      - name: Linguine
+        quantity: 400
+        unit: grams
+      - name: Tomato sauce
+        quantity: 500
+        unit: ml
+      - name: Onion
+        quantity: 1
+        unit: unit
+      - name: Garlic
+        quantity: 2
+        unit: cloves
+      - name: Carrots
+        quantity: 100
+        unit: grams
+      - name: Celery
+        quantity: 50
+        unit: grams
+      - name: Red wine
+        quantity: 100
+        unit: ml
+      - name: Italian herbs
+        quantity: 5
+        unit: grams
+      - name: Parmesan
+        quantity: 50
+        unit: grams
+    preparationTime: 15
+    cookingTime: 45
+    servings: 4
+    instructions:
+      - "Sauté onion, garlic, carrots, and celery in a pan."
+      - "Add ground beef and cook until browned."
+      - "Pour in red wine and reduce."
+      - "Add tomato sauce and Italian herbs, simmer for 30 minutes."
+      - "Serve over cooked linguine with grated Parmesan."
+    nutritionFacts:
+      - HIGH_PROTEIN
+      - HIGH_CALORIE
+
+  - title: Chana Masala
+    ingredients:
+      - name: Chickpeas
+        quantity: 400
+        unit: grams
+      - name: Tomato
+        quantity: 200
+        unit: grams
+      - name: Onion
+        quantity: 1
+        unit: unit
+      - name: Garlic
+        quantity: 3
+        unit: cloves
+      - name: Ginger
+        quantity: 10
+        unit: grams
+      - name: Garam masala
+        quantity: 5
+        unit: grams
+      - name: Cumin seeds
+        quantity: 5
+        unit: grams
+      - name: Turmeric
+        quantity: 2
+        unit: grams
+      - name: Coriander powder
+        quantity: 5
+        unit: grams
+      - name: Chili powder
+        quantity: 3
+        unit: grams
+      - name: Salt
+        quantity: 1
+        unit: tablespoon
+      - name: Oil
+        quantity: 15
+        unit: ml
+      - name: Water
+        quantity: 200
+        unit: ml
+      - name: Fresh cilantro
+        quantity: 10
+        unit: grams
+    preparationTime: 10
+    cookingTime: 30
+    servings: 4
+    instructions:
+      - "Heat oil in a pan and add cumin seeds; let them sizzle for a few seconds."
+      - "Add finely chopped onions and sauté until golden brown."
+      - "Add minced garlic and grated ginger, sauté for 1 minute."
+      - "Stir in the chopped tomatoes, turmeric, coriander powder, chili powder, and salt. Cook until tomatoes soften and oil separates."
+      - "Add the chickpeas and water, bring to a boil and simmer for 15-20 minutes."
+      - "Sprinkle garam masala, mix well, and cook for another 5 minutes."
+      - "Garnish with fresh cilantro and serve with rice or naan."
+    nutritionFacts:
+      - HIGH_PROTEIN
+      - CARBS
+
+  - title: Turkey Schnitzel
+    ingredients:
+      - name: Turkey breast
+        quantity: 400
+        unit: grams
+      - name: Flour
+        quantity: 50
+        unit: grams
+      - name: Eggs
+        quantity: 2
+        unit: units
+      - name: Breadcrumbs
+        quantity: 100
+        unit: grams
+      - name: Lemon
+        quantity: 1
+        unit: unit
+      - name: Salt
+        quantity: 1
+        unit: tablespoon
+      - name: Pepper
+        quantity: 1
+        unit: teaspoon
+      - name: Oil for frying
+        quantity: 200
+        unit: ml
+    preparationTime: 10
+    cookingTime: 15
+    servings: 4
+    instructions:
+      - "Pound turkey breast until thin."
+      - "Season with salt and pepper, coat in flour, dip in beaten eggs, and cover with breadcrumbs."
+      - "Fry in oil until golden brown."
+      - "Serve with lemon wedges."
+    nutritionFacts:
+      - HIGH_PROTEIN
+      - HIGH_CALORIE

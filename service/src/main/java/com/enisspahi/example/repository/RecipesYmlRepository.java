@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-class RecipeYmlRepository implements RecipeRepository {
+class RecipesYmlRepository implements RecipesRepository {
 
     private final List<Recipe> recipes = YamlSourceReader.readFromYaml();
 
