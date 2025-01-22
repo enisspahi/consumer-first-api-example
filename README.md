@@ -6,6 +6,10 @@ This repository contains a `consumer driven contract` based Client and Server AP
 ````
 docker compose -f .docker/docker-compose.yml up -d
 ````
+### Create PROD as environment
+````
+pact-broker  create-environment --broker-base-url http://localhost:9292/ --name prod --display-name PROD --production
+````
 
 ## Consumer First API Development process
 
@@ -40,6 +44,14 @@ Provider implementation done. Therefore we can deploy
 ./gradlew :service:pactVerify -Dpact.verifier.publishResults=true
 ``
 
+#### Optional: Record production deployment
+````
+pact-broker record-deployment --broker-base-url http://localhost:9292/ \
+                              --pacticipant RecipesAPI \
+                              --version 0.1.0 \
+                              --environment prod
+````
+
 ### 6. Consumer performs `Can I deploy?` check
 
 At this point provider has fulfilled the Pact and deployed the API. Therefore, the consumer is good-to-go with client deployment
@@ -47,3 +59,19 @@ At this point provider has fulfilled the Pact and deployed the API. Therefore, t
 ``
 ./gradlew :client:canIDeploy -Ppacticipant='RecipesClient' -Platest=true
 ``
+
+#### Optional: Can I deploy to production check 
+````
+pact-broker can-i-deploy --broker-base-url http://localhost:9292/ \
+                         --pacticipant RecipesClient \
+                         --version 0.1.0 \
+                         --to-environment prod
+````
+
+#### Optional: Record production deployment for client
+````
+pact-broker record-deployment --broker-base-url http://localhost:9292/ \
+                              --pacticipant RecipesClient \
+                              --version 0.0.1-SNAPSHOT \
+                              --environment prod                         
+````

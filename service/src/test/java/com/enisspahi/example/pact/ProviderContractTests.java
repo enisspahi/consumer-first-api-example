@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @Provider("RecipesAPI")
-@PactFolder("../client/build/pacts/")
-//@PactBroker(url = "http://localhost:9292/")
+//@PactFolder("../client/build/pacts/")
+@PactBroker(url = "http://localhost:9292/")
 class ProviderContractTests {
 
     @TestTemplate

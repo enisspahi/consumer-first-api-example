@@ -71,6 +71,7 @@ recipes:
       - "Bake for 20 minutes or until salmon flakes easily with a fork."
     nutritionFacts:
       - HIGH_PROTEIN
+      - HIGH_CALORIE
 
   - title: Pumpkin Soup
     ingredients:
@@ -226,6 +227,8 @@ recipes:
       - "Squeeze lime over the tacos and serve."
     nutritionFacts:
       - HIGH_PROTEIN
+      - CARBS
+      - HIGH_CALORIE
 
   - title: Bolognese Linguine
     ingredients:
@@ -330,6 +333,7 @@ recipes:
     nutritionFacts:
       - HIGH_PROTEIN
       - CARBS
+      - HIGH_CALORIE
 
   - title: Turkey Schnitzel
     ingredients:
